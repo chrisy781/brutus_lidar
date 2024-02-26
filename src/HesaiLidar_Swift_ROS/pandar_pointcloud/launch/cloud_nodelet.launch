@@ -1,0 +1,59 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+  <arg name="calibration" default="$(find pandar_pointcloud)/params/Pandar128_Correction.csv" />
+  <arg name="manager" default="pandar_nodelet_manager" />
+  <arg name="max_range" default="130.0" />
+  <arg name="min_range" default="0.9" />
+  <arg name="start_angle" default="0" />
+
+  <arg name="device_ip" default="" />
+  <arg name="host_ip" default="" />
+  <arg name="frame_id" default="Pandar128" />
+  <arg name="publish_model" default="both_point_raw" />
+  <arg name="pcap" default="" />
+  <arg name="port" default="2368" />
+  <arg name="read_fast" default="false" />
+  <arg name="read_once" default="false" />
+  <arg name="repeat_delay" default="0.0" />
+  <arg name="rpm" default="600.0" />
+  <arg name="firetime_file"  default="$(find pandar_pointcloud)/params/Pandar128_Firetimes.csv"/>
+  <arg name="namespace" default="hesai"/>
+  <arg name="coordinate_correction_flag" default="false" />
+  <arg name="multicast_ip"  default=""/>
+  <arg name="channel_config_file" default="$(find pandar_pointcloud)/params/QT128C2X_Channel_Cofig.csv" />
+  <arg name="cert_file" default="" />
+  <arg name="private_key_file" default="" />
+  <arg name="ca_file" default="" />
+
+  <node pkg="nodelet" type="nodelet" ns="$(arg namespace)" name="$(arg manager)_cloud"
+        args="load pandar_pointcloud/CloudNodelet $(arg manager)"
+		output="screen">
+    <param name="calibration" value="$(arg calibration)"/>
+    <param name="max_range" value="$(arg max_range)"/>
+    <param name="min_range" value="$(arg min_range)"/>
+    <param name="start_angle" value="$(arg start_angle)"/>
+
+    <param name="device_ip" value="$(arg device_ip)" />
+    <param name="host_ip" value="$(arg host_ip)" />
+    <param name="frame_id" value="$(arg frame_id)"/>
+    <param name="publish_model" value="$(arg publish_model)"/>
+    <param name="pcap" value="$(arg pcap)"/>
+    <param name="port" value="$(arg port)" />
+    <param name="read_fast" value="$(arg read_fast)"/>
+    <param name="read_once" value="$(arg read_once)"/>
+    <param name="repeat_delay" value="$(arg repeat_delay)"/>
+    <param name="rpm" value="$(arg rpm)"/>
+    <param name="firetime_file"  value="$(arg firetime_file)"/>
+    <param name="coordinate_correction_flag" value="$(arg coordinate_correction_flag)"/>
+    <param name="channel_config_file" value="$(arg channel_config_file)"/>
+    <param name="cert_file" value="$(arg cert_file)" />
+    <param name="private_key_file" value="$(arg private_key_file)" />
+    <param name="ca_file" value="$(arg ca_file)" />
+    <param name="multicast_ip" value="$(arg multicast_ip)"/>
+  </node>
+
+  <!--node pkg="nodelet" type="nodelet" name="$(arg manager)_color"
+        args="load pandar_pointcloud/RingColorsNodelet $(arg manager)"
+		output="screen"/-->
+</launch>

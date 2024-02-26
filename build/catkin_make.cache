@@ -1,0 +1,2 @@
+HesaiLidar_Swift_ROS/pandar_msg:HesaiLidar_Swift_ROS/pandar_pointcloud
+-DCATKIN_DEVEL_PREFIX=/home/user/rosworkspace/devel -DCMAKE_INSTALL_PREFIX=/home/user/rosworkspace/install -G Unix Makefiles
